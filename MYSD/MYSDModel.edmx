@@ -1,0 +1,739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MYSDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MYSDModelStoreContainer">
+    <EntitySet Name="VenueVendors" EntityType="MYSDModel.Store.VenueVendors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Addresses" EntityType="MYSDModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pricings" EntityType="MYSDModel.Store.Pricings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Occasions" EntityType="MYSDModel.Store.Occasions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contacts" EntityType="MYSDModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Halls" EntityType="MYSDModel.Store.Halls" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="MYSDModel.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Logins" EntityType="MYSDModel.Store.Logins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoginActivities" EntityType="MYSDModel.Store.LoginActivities" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ContactAddress1" Association="MYSDModel.Store.ContactAddress1">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="HallPricing" Association="MYSDModel.Store.HallPricing">
+      <End Role="Hall" EntitySet="Halls" />
+      <End Role="Pricing" EntitySet="Pricings" />
+    </AssociationSet>
+    <AssociationSet Name="HallAddress" Association="MYSDModel.Store.HallAddress">
+      <End Role="Hall" EntitySet="Halls" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="HallContact" Association="MYSDModel.Store.HallContact">
+      <End Role="Hall" EntitySet="Halls" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="VenueVendorHall" Association="MYSDModel.Store.VenueVendorHall">
+      <End Role="VenueVendor" EntitySet="VenueVendors" />
+      <End Role="Hall" EntitySet="Halls" />
+    </AssociationSet>
+    <AssociationSet Name="VenueVendorContact" Association="MYSDModel.Store.VenueVendorContact">
+      <End Role="VenueVendor" EntitySet="VenueVendors" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerContact" Association="MYSDModel.Store.CustomerContact">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerHall" Association="MYSDModel.Store.CustomerHall">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Hall" EntitySet="Halls" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerOccasion" Association="MYSDModel.Store.CustomerOccasion">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Occasion" EntitySet="Occasions" />
+    </AssociationSet>
+    <AssociationSet Name="LoginActivityLogin" Association="MYSDModel.Store.LoginActivityLogin">
+      <End Role="LoginActivity" EntitySet="LoginActivities" />
+      <End Role="Login" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerLogin" Association="MYSDModel.Store.CustomerLogin">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Login" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="VenueVendorLogin" Association="MYSDModel.Store.VenueVendorLogin">
+      <End Role="VenueVendor" EntitySet="VenueVendors" />
+      <End Role="Login" EntitySet="Logins" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="VenueVendors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Login_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address_Line_1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address_Line_2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address_Line_3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pricings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DurationByHr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cost" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Occasions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Suffix" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkPhone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MobilePhone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VenueVendorId" Type="int" Nullable="false" />
+    <Property Name="Hall_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Halls">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoomNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FloorNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Occupancy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VenueVendorId" Type="int" Nullable="false" />
+    <Property Name="Pricing_Id" Type="int" Nullable="false" />
+    <Property Name="Address_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Contact_Id" Type="int" Nullable="false" />
+    <Property Name="Hall_Id" Type="int" Nullable="false" />
+    <Property Name="Occasion_Id" Type="int" Nullable="false" />
+    <Property Name="Login_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Logins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginActivities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Timestamp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LoginId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ContactAddress1">
+    <End Role="Contact" Type="MYSDModel.Store.Contacts" Multiplicity="1" />
+    <End Role="Address" Type="MYSDModel.Store.Addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HallPricing">
+    <End Role="Hall" Type="MYSDModel.Store.Halls" Multiplicity="*" />
+    <End Role="Pricing" Type="MYSDModel.Store.Pricings" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pricing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hall">
+        <PropertyRef Name="Pricing_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HallAddress">
+    <End Role="Hall" Type="MYSDModel.Store.Halls" Multiplicity="*" />
+    <End Role="Address" Type="MYSDModel.Store.Addresses" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hall">
+        <PropertyRef Name="Address_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HallContact">
+    <End Role="Hall" Type="MYSDModel.Store.Halls" Multiplicity="1" />
+    <End Role="Contact" Type="MYSDModel.Store.Contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hall">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="Hall_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VenueVendorHall">
+    <End Role="VenueVendor" Type="MYSDModel.Store.VenueVendors" Multiplicity="1" />
+    <End Role="Hall" Type="MYSDModel.Store.Halls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VenueVendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hall">
+        <PropertyRef Name="VenueVendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VenueVendorContact">
+    <End Role="VenueVendor" Type="MYSDModel.Store.VenueVendors" Multiplicity="1" />
+    <End Role="Contact" Type="MYSDModel.Store.Contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VenueVendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="VenueVendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerContact">
+    <End Role="Customer" Type="MYSDModel.Store.Customers" Multiplicity="*" />
+    <End Role="Contact" Type="MYSDModel.Store.Contacts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Contact_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerHall">
+    <End Role="Customer" Type="MYSDModel.Store.Customers" Multiplicity="*" />
+    <End Role="Hall" Type="MYSDModel.Store.Halls" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Hall">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Hall_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerOccasion">
+    <End Role="Customer" Type="MYSDModel.Store.Customers" Multiplicity="*" />
+    <End Role="Occasion" Type="MYSDModel.Store.Occasions" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Occasion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Occasion_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoginActivityLogin">
+    <End Role="LoginActivity" Type="MYSDModel.Store.LoginActivities" Multiplicity="*" />
+    <End Role="Login" Type="MYSDModel.Store.Logins" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoginActivity">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerLogin">
+    <End Role="Customer" Type="MYSDModel.Store.Customers" Multiplicity="*" />
+    <End Role="Login" Type="MYSDModel.Store.Logins" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Login_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VenueVendorLogin">
+    <End Role="VenueVendor" Type="MYSDModel.Store.VenueVendors" Multiplicity="*" />
+    <End Role="Login" Type="MYSDModel.Store.Logins" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VenueVendor">
+        <PropertyRef Name="Login_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MYSDModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MYSDModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VenueVendors" EntityType="MYSDModel.VenueVendor" />
+          <EntitySet Name="Addresses" EntityType="MYSDModel.Address" />
+          <EntitySet Name="Pricings" EntityType="MYSDModel.Pricing" />
+          <EntitySet Name="Occasions" EntityType="MYSDModel.Occasion" />
+          <EntitySet Name="Contacts" EntityType="MYSDModel.Contact" />
+          <AssociationSet Name="ContactAddress1" Association="MYSDModel.ContactAddress1">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <EntitySet Name="Halls" EntityType="MYSDModel.Hall" />
+          <AssociationSet Name="HallPricing" Association="MYSDModel.HallPricing">
+            <End Role="Hall" EntitySet="Halls" />
+            <End Role="Pricing" EntitySet="Pricings" />
+          </AssociationSet>
+          <AssociationSet Name="HallAddress" Association="MYSDModel.HallAddress">
+            <End Role="Hall" EntitySet="Halls" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="HallContact" Association="MYSDModel.HallContact">
+            <End Role="Hall" EntitySet="Halls" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="VenueVendorHall" Association="MYSDModel.VenueVendorHall">
+            <End Role="VenueVendor" EntitySet="VenueVendors" />
+            <End Role="Hall" EntitySet="Halls" />
+          </AssociationSet>
+          <AssociationSet Name="VenueVendorContact" Association="MYSDModel.VenueVendorContact">
+            <End Role="VenueVendor" EntitySet="VenueVendors" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="MYSDModel.Customer" />
+          <AssociationSet Name="CustomerContact" Association="MYSDModel.CustomerContact">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerHall" Association="MYSDModel.CustomerHall">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Hall" EntitySet="Halls" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerOccasion" Association="MYSDModel.CustomerOccasion">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Occasion" EntitySet="Occasions" />
+          </AssociationSet>
+          <EntitySet Name="Logins" EntityType="MYSDModel.Login" />
+          <EntitySet Name="LoginActivities" EntityType="MYSDModel.LoginActivity" />
+          <AssociationSet Name="LoginActivityLogin" Association="MYSDModel.LoginActivityLogin">
+            <End Role="LoginActivity" EntitySet="LoginActivities" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerLogin" Association="MYSDModel.CustomerLogin">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="VenueVendorLogin" Association="MYSDModel.VenueVendorLogin">
+            <End Role="VenueVendor" EntitySet="VenueVendors" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="VenueVendor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Halls" Relationship="MYSDModel.VenueVendorHall" FromRole="VenueVendor" ToRole="Hall" />
+          <NavigationProperty Name="Contacts" Relationship="MYSDModel.VenueVendorContact" FromRole="VenueVendor" ToRole="Contact" />
+          <NavigationProperty Name="Login" Relationship="MYSDModel.VenueVendorLogin" FromRole="VenueVendor" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address_Line_1" Type="String" Nullable="false" />
+          <Property Name="Address_Line_2" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" />
+          <Property Name="Zip" Type="String" Nullable="false" />
+          <Property Name="Address_Line_3" Type="String" Nullable="false" />
+          <NavigationProperty Name="Contact" Relationship="MYSDModel.ContactAddress1" FromRole="Address" ToRole="Contact" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hall" Relationship="MYSDModel.HallAddress" FromRole="Address" ToRole="Hall" />
+        </EntityType>
+        <EntityType Name="Pricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DurationByHr" Type="String" Nullable="false" />
+          <Property Name="Cost" Type="String" Nullable="false" />
+          <NavigationProperty Name="Hall" Relationship="MYSDModel.HallPricing" FromRole="Pricing" ToRole="Hall" />
+        </EntityType>
+        <EntityType Name="Occasion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="MYSDModel.CustomerOccasion" FromRole="Occasion" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" />
+          <Property Name="Suffix" Type="String" Nullable="false" />
+          <Property Name="WorkPhone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="MobilePhone" Type="String" Nullable="false" />
+          <Property Name="WorkEmail" Type="String" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="MYSDModel.ContactAddress1" FromRole="Contact" ToRole="Address" />
+          <NavigationProperty Name="Hall" Relationship="MYSDModel.HallContact" FromRole="Contact" ToRole="Hall" />
+          <NavigationProperty Name="VenueVendor" Relationship="MYSDModel.VenueVendorContact" FromRole="Contact" ToRole="VenueVendor" />
+          <Property Name="VenueVendorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="MYSDModel.CustomerContact" FromRole="Contact" ToRole="Customer" />
+        </EntityType>
+        <Association Name="ContactAddress1">
+          <End Type="MYSDModel.Contact" Role="Contact" Multiplicity="1" />
+          <End Type="MYSDModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="RoomNumber" Type="String" Nullable="false" />
+          <Property Name="FloorNumber" Type="String" Nullable="false" />
+          <Property Name="Occupancy" Type="String" Nullable="false" />
+          <NavigationProperty Name="Pricing" Relationship="MYSDModel.HallPricing" FromRole="Hall" ToRole="Pricing" />
+          <NavigationProperty Name="Address" Relationship="MYSDModel.HallAddress" FromRole="Hall" ToRole="Address" />
+          <NavigationProperty Name="Contacts" Relationship="MYSDModel.HallContact" FromRole="Hall" ToRole="Contact" />
+          <NavigationProperty Name="VenueVendor" Relationship="MYSDModel.VenueVendorHall" FromRole="Hall" ToRole="VenueVendor" />
+          <Property Name="VenueVendorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="MYSDModel.CustomerHall" FromRole="Hall" ToRole="Customer" />
+        </EntityType>
+        <Association Name="HallPricing">
+          <End Type="MYSDModel.Hall" Role="Hall" Multiplicity="1" />
+          <End Type="MYSDModel.Pricing" Role="Pricing" Multiplicity="1" />
+        </Association>
+        <Association Name="HallAddress">
+          <End Type="MYSDModel.Hall" Role="Hall" Multiplicity="1" />
+          <End Type="MYSDModel.Address" Role="Address" Multiplicity="1" />
+        </Association>
+        <Association Name="HallContact">
+          <End Type="MYSDModel.Hall" Role="Hall" Multiplicity="1" />
+          <End Type="MYSDModel.Contact" Role="Contact" Multiplicity="*" />
+        </Association>
+        <Association Name="VenueVendorHall">
+          <End Type="MYSDModel.VenueVendor" Role="VenueVendor" Multiplicity="1" />
+          <End Type="MYSDModel.Hall" Role="Hall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VenueVendor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hall">
+              <PropertyRef Name="VenueVendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VenueVendorContact">
+          <End Type="MYSDModel.VenueVendor" Role="VenueVendor" Multiplicity="1" />
+          <End Type="MYSDModel.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VenueVendor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="VenueVendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Contact" Relationship="MYSDModel.CustomerContact" FromRole="Customer" ToRole="Contact" />
+          <NavigationProperty Name="Hall" Relationship="MYSDModel.CustomerHall" FromRole="Customer" ToRole="Hall" />
+          <NavigationProperty Name="Occasion" Relationship="MYSDModel.CustomerOccasion" FromRole="Customer" ToRole="Occasion" />
+          <NavigationProperty Name="Login" Relationship="MYSDModel.CustomerLogin" FromRole="Customer" ToRole="Login" />
+        </EntityType>
+        <Association Name="CustomerContact">
+          <End Type="MYSDModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="MYSDModel.Contact" Role="Contact" Multiplicity="1" />
+        </Association>
+        <Association Name="CustomerHall">
+          <End Type="MYSDModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="MYSDModel.Hall" Role="Hall" Multiplicity="1" />
+        </Association>
+        <Association Name="CustomerOccasion">
+          <End Type="MYSDModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="MYSDModel.Occasion" Role="Occasion" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="LoginActivities" Relationship="MYSDModel.LoginActivityLogin" FromRole="Login" ToRole="LoginActivity" />
+          <NavigationProperty Name="Customer" Relationship="MYSDModel.CustomerLogin" FromRole="Login" ToRole="Customer" />
+          <NavigationProperty Name="VenueVendor" Relationship="MYSDModel.VenueVendorLogin" FromRole="Login" ToRole="VenueVendor" />
+        </EntityType>
+        <EntityType Name="LoginActivity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Timestamp" Type="String" Nullable="false" />
+          <NavigationProperty Name="Login" Relationship="MYSDModel.LoginActivityLogin" FromRole="LoginActivity" ToRole="Login" />
+          <Property Name="LoginId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="LoginActivityLogin">
+          <End Type="MYSDModel.LoginActivity" Role="LoginActivity" Multiplicity="*" />
+          <End Type="MYSDModel.Login" Role="Login" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoginActivity">
+              <PropertyRef Name="LoginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerLogin">
+          <End Type="MYSDModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="MYSDModel.Login" Role="Login" Multiplicity="1" />
+        </Association>
+        <Association Name="VenueVendorLogin">
+          <End Type="MYSDModel.VenueVendor" Role="VenueVendor" Multiplicity="1" />
+          <End Type="MYSDModel.Login" Role="Login" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MYSDModelStoreContainer" CdmEntityContainer="MYSDModelContainer">
+    <EntitySetMapping Name="VenueVendors">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.VenueVendor)">
+        <MappingFragment StoreEntitySet="VenueVendors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address_Line_1" ColumnName="Address_Line_1" />
+          <ScalarProperty Name="Address_Line_2" ColumnName="Address_Line_2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Address_Line_3" ColumnName="Address_Line_3" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pricings">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Pricing)">
+        <MappingFragment StoreEntitySet="Pricings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DurationByHr" ColumnName="DurationByHr" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Occasions">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Occasion)">
+        <MappingFragment StoreEntitySet="Occasions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Contact)">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="WorkEmail" ColumnName="WorkEmail" />
+          <ScalarProperty Name="VenueVendorId" ColumnName="VenueVendorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Halls">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Hall)">
+        <MappingFragment StoreEntitySet="Halls">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+          <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+          <ScalarProperty Name="Occupancy" ColumnName="Occupancy" />
+          <ScalarProperty Name="VenueVendorId" ColumnName="VenueVendorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Login)">
+        <MappingFragment StoreEntitySet="Logins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginActivities">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.LoginActivity)">
+        <MappingFragment StoreEntitySet="LoginActivities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="HallPricing" TypeName="MYSDModel.HallPricing" StoreEntitySet="Halls">
+      <EndProperty Name="Pricing">
+        <ScalarProperty Name="Id" ColumnName="Pricing_Id" />
+      </EndProperty>
+      <EndProperty Name="Hall">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HallAddress" TypeName="MYSDModel.HallAddress" StoreEntitySet="Halls">
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Address_Id" />
+      </EndProperty>
+      <EndProperty Name="Hall">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HallContact" TypeName="MYSDModel.HallContact" StoreEntitySet="Contacts">
+      <EndProperty Name="Hall">
+        <ScalarProperty Name="Id" ColumnName="Hall_Id" />
+      </EndProperty>
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerContact" TypeName="MYSDModel.CustomerContact" StoreEntitySet="Customers">
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Contact_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerHall" TypeName="MYSDModel.CustomerHall" StoreEntitySet="Customers">
+      <EndProperty Name="Hall">
+        <ScalarProperty Name="Id" ColumnName="Hall_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerOccasion" TypeName="MYSDModel.CustomerOccasion" StoreEntitySet="Customers">
+      <EndProperty Name="Occasion">
+        <ScalarProperty Name="Id" ColumnName="Occasion_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerLogin" TypeName="MYSDModel.CustomerLogin" StoreEntitySet="Customers">
+      <EndProperty Name="Login">
+        <ScalarProperty Name="Id" ColumnName="Login_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VenueVendorLogin" TypeName="MYSDModel.VenueVendorLogin" StoreEntitySet="VenueVendors">
+      <EndProperty Name="Login">
+        <ScalarProperty Name="Id" ColumnName="Login_Id" />
+      </EndProperty>
+      <EndProperty Name="VenueVendor">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
