@@ -24,7 +24,7 @@ namespace MYSD
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-MYSD.css",
                       "~/Content/site.css"));
         }
     }

@@ -202,6 +202,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\VenueVendorsController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>MYSDModel.tt</DependentUpon>
     </Compile>
@@ -249,6 +250,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-MYSD.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -323,6 +325,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\VenueVendors\Create.cshtml" />
+    <Content Include="Views\VenueVendors\Delete.cshtml" />
+    <Content Include="Views\VenueVendors\Details.cshtml" />
+    <Content Include="Views\VenueVendors\Edit.cshtml" />
+    <Content Include="Views\VenueVendors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

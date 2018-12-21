@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/16/2018 15:30:17
--- Generated from EDMX file: C:\Users\sudha\documents\visual studio 2017\Projects\MYSD\MYSD\MYSDModel.edmx
+-- Date Created: 12/18/2018 19:46:01
+-- Generated from EDMX file: C:\Users\amani\Source\Repos\mysd\MYSD\MYSDModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,74 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ContactAddress1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Addresses] DROP CONSTRAINT [FK_ContactAddress1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HallPricing]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Halls] DROP CONSTRAINT [FK_HallPricing];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HallAddress]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Halls] DROP CONSTRAINT [FK_HallAddress];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HallContact]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Contacts] DROP CONSTRAINT [FK_HallContact];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VenueVendorHall]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Halls] DROP CONSTRAINT [FK_VenueVendorHall];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VenueVendorContact]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Contacts] DROP CONSTRAINT [FK_VenueVendorContact];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerContact]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Customers] DROP CONSTRAINT [FK_CustomerContact];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerHall]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Customers] DROP CONSTRAINT [FK_CustomerHall];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerOccasion]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Customers] DROP CONSTRAINT [FK_CustomerOccasion];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LoginActivityLogin]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LoginActivities] DROP CONSTRAINT [FK_LoginActivityLogin];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerLogin]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Customers] DROP CONSTRAINT [FK_CustomerLogin];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VenueVendorLogin]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[VenueVendors] DROP CONSTRAINT [FK_VenueVendorLogin];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[VenueVendors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[VenueVendors];
+GO
+IF OBJECT_ID(N'[dbo].[Addresses]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Addresses];
+GO
+IF OBJECT_ID(N'[dbo].[Pricings]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Pricings];
+GO
+IF OBJECT_ID(N'[dbo].[Occasions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Occasions];
+GO
+IF OBJECT_ID(N'[dbo].[Contacts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Contacts];
+GO
+IF OBJECT_ID(N'[dbo].[Halls]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Halls];
+GO
+IF OBJECT_ID(N'[dbo].[Customers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Customers];
+GO
+IF OBJECT_ID(N'[dbo].[Logins]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Logins];
+GO
+IF OBJECT_ID(N'[dbo].[LoginActivities]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LoginActivities];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
