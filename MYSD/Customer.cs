@@ -18,7 +18,6 @@ namespace MYSD
     
         public virtual Contact Contact { get; set; }
         public virtual Hall Hall { get; set; }
-        public virtual Occasion Occasion { get; set; }
         public virtual Login Login { get; set; }
     }
 }

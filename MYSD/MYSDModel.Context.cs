@@ -28,7 +28,7 @@ namespace MYSD
         public virtual DbSet<VenueVendor> VenueVendors { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Pricing> Pricings { get; set; }
-        public virtual DbSet<Occasion> Occasions { get; set; }
+        public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Hall> Halls { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }

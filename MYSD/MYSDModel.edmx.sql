@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/18/2018 19:46:01
--- Generated from EDMX file: C:\Users\amani\Source\Repos\mysd\MYSD\MYSDModel.edmx
+-- Date Created: 12/21/2018 22:05:36
+-- Generated from EDMX file: C:\Users\sudha\documents\visual studio 2017\Projects\MYSD\MYSD\MYSDModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -119,8 +119,8 @@ CREATE TABLE [dbo].[Pricings] (
 );
 GO
 
--- Creating table 'Occasions'
-CREATE TABLE [dbo].[Occasions] (
+-- Creating table 'Events'
+CREATE TABLE [dbo].[Events] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL
 );
@@ -160,7 +160,6 @@ CREATE TABLE [dbo].[Customers] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Contact_Id] int  NOT NULL,
     [Hall_Id] int  NOT NULL,
-    [Occasion_Id] int  NOT NULL,
     [Login_Id] int  NOT NULL
 );
 GO
@@ -204,9 +203,9 @@ ADD CONSTRAINT [PK_Pricings]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Occasions'
-ALTER TABLE [dbo].[Occasions]
-ADD CONSTRAINT [PK_Occasions]
+-- Creating primary key on [Id] in table 'Events'
+ALTER TABLE [dbo].[Events]
+ADD CONSTRAINT [PK_Events]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -362,21 +361,6 @@ GO
 CREATE INDEX [IX_FK_CustomerHall]
 ON [dbo].[Customers]
     ([Hall_Id]);
-GO
-
--- Creating foreign key on [Occasion_Id] in table 'Customers'
-ALTER TABLE [dbo].[Customers]
-ADD CONSTRAINT [FK_CustomerOccasion]
-    FOREIGN KEY ([Occasion_Id])
-    REFERENCES [dbo].[Occasions]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CustomerOccasion'
-CREATE INDEX [IX_FK_CustomerOccasion]
-ON [dbo].[Customers]
-    ([Occasion_Id]);
 GO
 
 -- Creating foreign key on [LoginId] in table 'LoginActivities'

@@ -9,7 +9,7 @@
     <EntitySet Name="VenueVendors" EntityType="MYSDModel.Store.VenueVendors" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Addresses" EntityType="MYSDModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pricings" EntityType="MYSDModel.Store.Pricings" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Occasions" EntityType="MYSDModel.Store.Occasions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events" EntityType="MYSDModel.Store.Events" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Contacts" EntityType="MYSDModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Halls" EntityType="MYSDModel.Store.Halls" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Customers" EntityType="MYSDModel.Store.Customers" store:Type="Tables" Schema="dbo" />
@@ -46,10 +46,6 @@
     <AssociationSet Name="CustomerHall" Association="MYSDModel.Store.CustomerHall">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Hall" EntitySet="Halls" />
-    </AssociationSet>
-    <AssociationSet Name="CustomerOccasion" Association="MYSDModel.Store.CustomerOccasion">
-      <End Role="Customer" EntitySet="Customers" />
-      <End Role="Occasion" EntitySet="Occasions" />
     </AssociationSet>
     <AssociationSet Name="LoginActivityLogin" Association="MYSDModel.Store.LoginActivityLogin">
       <End Role="LoginActivity" EntitySet="LoginActivities" />
@@ -93,7 +89,7 @@
     <Property Name="DurationByHr" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Cost" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="Occasions">
+  <EntityType Name="Events">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -136,7 +132,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Contact_Id" Type="int" Nullable="false" />
     <Property Name="Hall_Id" Type="int" Nullable="false" />
-    <Property Name="Occasion_Id" Type="int" Nullable="false" />
     <Property Name="Login_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Logins">
@@ -252,18 +247,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CustomerOccasion">
-    <End Role="Customer" Type="MYSDModel.Store.Customers" Multiplicity="*" />
-    <End Role="Occasion" Type="MYSDModel.Store.Occasions" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Occasion">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Customer">
-        <PropertyRef Name="Occasion_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="LoginActivityLogin">
     <End Role="LoginActivity" Type="MYSDModel.Store.LoginActivities" Multiplicity="*" />
     <End Role="Login" Type="MYSDModel.Store.Logins" Multiplicity="1" />
@@ -308,7 +291,7 @@
           <EntitySet Name="VenueVendors" EntityType="MYSDModel.VenueVendor" />
           <EntitySet Name="Addresses" EntityType="MYSDModel.Address" />
           <EntitySet Name="Pricings" EntityType="MYSDModel.Pricing" />
-          <EntitySet Name="Occasions" EntityType="MYSDModel.Occasion" />
+          <EntitySet Name="Events" EntityType="MYSDModel.Events" />
           <EntitySet Name="Contacts" EntityType="MYSDModel.Contact" />
           <AssociationSet Name="ContactAddress1" Association="MYSDModel.ContactAddress1">
             <End Role="Contact" EntitySet="Contacts" />
@@ -343,10 +326,6 @@
           <AssociationSet Name="CustomerHall" Association="MYSDModel.CustomerHall">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Hall" EntitySet="Halls" />
-          </AssociationSet>
-          <AssociationSet Name="CustomerOccasion" Association="MYSDModel.CustomerOccasion">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Occasion" EntitySet="Occasions" />
           </AssociationSet>
           <EntitySet Name="Logins" EntityType="MYSDModel.Login" />
           <EntitySet Name="LoginActivities" EntityType="MYSDModel.LoginActivity" />
@@ -397,13 +376,12 @@
           <Property Name="Cost" Type="String" Nullable="false" />
           <NavigationProperty Name="Hall" Relationship="MYSDModel.HallPricing" FromRole="Pricing" ToRole="Hall" />
         </EntityType>
-        <EntityType Name="Occasion">
+        <EntityType Name="Events">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="MYSDModel.CustomerOccasion" FromRole="Occasion" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -495,7 +473,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Contact" Relationship="MYSDModel.CustomerContact" FromRole="Customer" ToRole="Contact" />
           <NavigationProperty Name="Hall" Relationship="MYSDModel.CustomerHall" FromRole="Customer" ToRole="Hall" />
-          <NavigationProperty Name="Occasion" Relationship="MYSDModel.CustomerOccasion" FromRole="Customer" ToRole="Occasion" />
           <NavigationProperty Name="Login" Relationship="MYSDModel.CustomerLogin" FromRole="Customer" ToRole="Login" />
         </EntityType>
         <Association Name="CustomerContact">
@@ -505,10 +482,6 @@
         <Association Name="CustomerHall">
           <End Type="MYSDModel.Customer" Role="Customer" Multiplicity="1" />
           <End Type="MYSDModel.Hall" Role="Hall" Multiplicity="1" />
-        </Association>
-        <Association Name="CustomerOccasion">
-          <End Type="MYSDModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="MYSDModel.Occasion" Role="Occasion" Multiplicity="1" />
         </Association>
         <EntityType Name="Login">
           <Key>
@@ -588,9 +561,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Occasions">
-      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Occasion)">
-        <MappingFragment StoreEntitySet="Occasions">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="IsTypeOf(MYSDModel.Events)">
+        <MappingFragment StoreEntitySet="Events">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
@@ -685,14 +658,6 @@
     <AssociationSetMapping Name="CustomerHall" TypeName="MYSDModel.CustomerHall" StoreEntitySet="Customers">
       <EndProperty Name="Hall">
         <ScalarProperty Name="Id" ColumnName="Hall_Id" />
-      </EndProperty>
-      <EndProperty Name="Customer">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="CustomerOccasion" TypeName="MYSDModel.CustomerOccasion" StoreEntitySet="Customers">
-      <EndProperty Name="Occasion">
-        <ScalarProperty Name="Id" ColumnName="Occasion_Id" />
       </EndProperty>
       <EndProperty Name="Customer">
         <ScalarProperty Name="Id" ColumnName="Id" />

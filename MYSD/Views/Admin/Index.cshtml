@@ -1,26 +1,20 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<nav class="navbar navbar-expand navbar-light bg-light">
-    <ul class="nav nav-pills">
-        <li>@Html.ActionLink("Venues", "Index", "Venues")</li>
-        <li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-    </ul>
-</nav>
 <div class="row">
     <div class="col-md-4">
         <div class="panel panel-default">
-        <div class="panel-heading">Upcoming Occassions</div>
+        <div class="panel-heading">Upcoming Events</div>
         <div></div>
         </div>
     </div>
     <div class="col-md-4">
         @if (ViewBag.displayMenu == "Yes")
         {
-        <h1>Welcome Admin. Now you can create user Role.</h1>
+        <h3>Welcome Admin. Now you can create user Role.</h3>
         <h3>
             <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
         </h3>

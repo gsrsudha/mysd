@@ -201,13 +201,16 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\OccasionsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VenueVendorsController.cs" />
     <Compile Include="Customer.cs">
+      <DependentUpon>MYSDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Events.cs">
       <DependentUpon>MYSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -239,9 +242,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MYSDModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Occasion.cs">
-      <DependentUpon>MYSDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pricing.cs">
       <DependentUpon>MYSDModel.tt</DependentUpon>
@@ -334,16 +334,14 @@
     <Content Include="Views\VenueVendors\Details.cshtml" />
     <Content Include="Views\VenueVendors\Edit.cshtml" />
     <Content Include="Views\VenueVendors\Index.cshtml" />
-    <Content Include="Views\Occasions\Create.cshtml" />
-    <Content Include="Views\Occasions\Delete.cshtml" />
-    <Content Include="Views\Occasions\Details.cshtml" />
-    <Content Include="Views\Occasions\Edit.cshtml" />
-    <Content Include="Views\Occasions\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml">
       <BrowseToURL>~/Users/Index</BrowseToURL>
     </Content>
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Admin\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
