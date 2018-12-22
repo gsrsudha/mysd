@@ -11,6 +11,7 @@ using MYSD;
 
 namespace MYSD.Controllers
 {
+    [Authorize]
     public class VenueVendorsController : Controller
     {
         private MYSDModelContainer db = new MYSDModelContainer();
